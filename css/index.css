@@ -1,0 +1,69 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #eee;
+}
+
+a {
+    text-decoration: none;
+    font-family: '宋体';
+    font-size: 20px;
+    color: #000;
+}
+
+.logo {
+    z-index: 999;
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    background: url(../img/1.png) no-repeat;
+    cursor: pointer;
+}
+
+.logo img {
+    width: 40px;
+    height: 40px;
+}
+
+.logo:hover {
+    width: 750px;
+    transition: all 1s;
+}
+
+.box {
+    position: absolute;
+    width: 250px;
+    height: 600px;
+    background-color: rgb(247, 230, 233);
+    box-shadow: 0 0 5px black;
+}
+
+.f1 {
+   top:45px;
+   left: 10px;
+}
+
+.f2 {
+    top:45px;
+    left: 270px;
+ }
+
+ .box li {
+     height: 29px;
+     line-height: 29px;
+     border-bottom: 1px black solid;
+     text-align: center;
+ }
+
+ .box a {
+     display: block;
+     width: 100%;
+ }
+
+ .box a:hover {
+    color: white;
+    background-color: #000;
+ }
