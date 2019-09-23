@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="../xiakecp_favicon.ico" type="image/x-icon" />
+    <title>贪吃蛇</title>
+    <style>
+        .map {
+            width: 800px;
+            height: 600px;
+            margin-left: 50%;
+            background-color: #ccc;
+            position: relative;
+            transform: translateX(-50%);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 地图 -->
+    <div class="map">
+
+    </div>
+
+    <script>
+        //自调用函数
+        (function () {
+            let elements = [];//保存每个小方块食物
+            function food(x, y, width, height, color) {
+                this.x = x || 0;
+                this.y = y || 0;
+                this.width = width || 20;
+                this.height = height || 20;
+                this.color = color || 'green';
+            }
+            //为原型添加初始化方法（作用：在页面上显示食物)
+            food.prototype.init = function (map) {
+                //先删除小食物
+                remove();
+                //创建食物
+                //创建div
+                let div = document.createElement('div');
+                //把div加到map中
+                map.appendChild(div);
+                //设置div样式
+                div.style.width = this.width + 'px';
+                div.style.height = this.height + 'px';
+                div.style.backgroundColor = this.color;
+                //先脱离文档流
+                div.style.position = 'absolute';
+                //随机横纵坐标
+                this.x = parseInt(Math.random() * (map.offsetWidth / this.width)) * this.width;
+                this.y = parseInt(Math.random() * (map.offsetHeight / this.height)) * this.height;
+                div.style.left = this.x + 'px';
+                div.style.top = this.y + 'px';
+
+                //将div加入到数组elements中
+                elements.push(div);
+            };
+
+            //私有函数删除食物
+            function remove() {
+                //elements数组中有食物
+                for(var i=0;i<elements.length;i++){
+                    var ele=elements[i];
+                    //找到父级元素，然后删除元素
+                    ele.parentNode.removeChild(ele);
+                    //再不elements的这个子元素删除
+                    elements.splice(i,1);
+                }
+            }
+
+            window.food = food;
+        }());
+
+        var fd=new food();
+        fd.init(document.querySelector('.map'));
+
+    </script>
+</body>
+
+</html>
